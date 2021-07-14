@@ -27,6 +27,9 @@ If you want to edit this app you must have a Github account, have downloaded Nod
 - Robo 3T
 - Visual Studio Code
 
+### Acknowledgements
+Icons made by [Eucalyp](https://www.flaticon.com/authors/eucalyp) from [Flaticon](https://www.flaticon.com/)
+
  ### License: 
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

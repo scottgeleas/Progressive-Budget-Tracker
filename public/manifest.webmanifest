@@ -1,0 +1,25 @@
+{
+    "name": "Progressive Budget Tracker",
+    "short_name": "Budget Tracker",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A budget tracker, with offline functionality",
+    "icons": [{
+      "src": "./icons/budget64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }, {
+      "src": "./icons/budget128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }, {
+      "src": "./icons/budget256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }, {
+      "src": "./icons/budget512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }]
+  }
