@@ -6,7 +6,7 @@ require("dotenv").config()
 
 const uri = process.env.DB_URI;
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(logger("dev"));
