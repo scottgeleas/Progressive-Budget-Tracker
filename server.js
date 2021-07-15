@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const compression = require("compression");
 require("dotenv").config()
 
-const uri = process.env.DB_URI;
+const URI = process.env.DB_URI;
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -17,14 +17,11 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/BudgetDB",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false
-    }
-  );
+mongoose.connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
 
 // routes
 app.use(require("./routes/api.js"));
