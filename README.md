@@ -1,4 +1,5 @@
 # Progressive Budget Tracker
+
 ## Description
 This is an application that allows you to keep track of your money with ease! Just enter your deposits or expenses, and let the chart display your total over time. In a weird place with poor cell service? No need to worry! This application works offline, letting you worry about keeping track of your finances. Your offline data will be uploaded as soon as you come back online. 
 
