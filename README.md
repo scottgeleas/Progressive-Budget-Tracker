@@ -1,8 +1,12 @@
 # Progressive Budget Tracker
+## Description
+This is an application that allows you to keep track of your money with ease! Just enter your deposits or expenses, and let the chart display your total over time. In a weird place with poor cell service? No need to worry! This application works offline, letting you worry about keeping track of your finances. Your offline data will be uploaded as soon as you come back online. 
+
+![Budget Tracker](./public/images/budgetTracker.png)
 
 ## Getting Started:
 
-### [Progressive Budget Tracker Website]()
+### [Progressive Budget Tracker](https://progressive-budget-tracker-sjg.herokuapp.com/)
 
 If you want to edit this app you must have a Github account, have downloaded Node.js, MongoDB, Robo 3T, and Visual Studio Code.
 
