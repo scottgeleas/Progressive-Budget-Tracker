@@ -6,7 +6,10 @@ request.onsuccess = event => {
 
 request.onupgradeneeded = ({ target }) => {
     const db = target.result;
-    const objectStore = db.createObjectStore("transactions");
+    const objectStore = db.createObjectStore("transactions", {
+        autoIncrement: true,
+        keyPath: "id",
+    });
 };
 
 request.onsuccess = () => {
@@ -17,7 +20,6 @@ function saveRecord(data) {
     const db = request.result;
     const transaction = db.transaction(["transactions"], "readwrite");
     const transactionStore = transaction.objectStore("transactions");
-    console.log(data)
     // Adds data to our objectStore
     transactionStore.add(data);
 };
@@ -29,11 +31,10 @@ function saveData() {
     const allData = transactionStore.getAll();
 
     allData.onsuccess = () => {
-        console.log(allData)
         if (allData.result.length > 0) {
         fetch("/api/transaction/bulk", {
                 method: "POST",
-                body: JSON.stringify(allData),
+                body: JSON.stringify(allData.result),
                 headers: {
                     Accept: "application/json, text/plain, */*",
                     "Content-Type": "application/json"
