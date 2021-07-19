@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
-require("dotenv").config()
+require("dotenv").config();
 
 const URI = process.env.DB_URI;
 
@@ -20,14 +20,14 @@ app.use(express.static("public"));
 mongoose.connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
 });
 
 // routes
 app.use(require("./routes/api.js"));
 
-mongoose.connection.once('open', () => {
+mongoose.connection.once("open", () => {
     app.listen(PORT, () => {
-        console.log(`App running on port ${PORT}`)
+        console.log(`App running on port ${PORT}`);
     });
-})
+});
