@@ -54,7 +54,7 @@ self.addEventListener("activate", (event) => {
 // from the network before returning it to the page.
 self.addEventListener("fetch", (event) => {
     // Skip cross-origin requests, like those for Google Analytics.
-    if (event.request.url.startsWith("/api")) {
+    if (event.request.url.includes("/api/")) {
         event.respondWith(
             caches.match(event.request).then((cachedResponse) => {
                 if (cachedResponse) {
@@ -64,11 +64,10 @@ self.addEventListener("fetch", (event) => {
                 return caches.open(DATA_CACHE_NAME).then((cache) => {
                     return fetch(event.request).then((response) => {
                         // Put a copy of the response in the runtime cache.
-                        return cache
-                            .put(event.request, response.clone())
-                            .then(() => {
-                                return response;
-                            });
+                        if (response.status === 200) {
+                            cache.put(event.request.url, response.clone());
+                        }
+                        return response;
                     });
                 });
             })
@@ -83,11 +82,7 @@ self.addEventListener("fetch", (event) => {
                 return caches.open(CACHE_NAME).then((cache) => {
                     return fetch(event.request).then((response) => {
                         // Put a copy of the response in the runtime cache.
-                        return cache
-                            .put(event.request, response.clone())
-                            .then(() => {
-                                return response;
-                            });
+                        return response;
                     });
                 });
             })

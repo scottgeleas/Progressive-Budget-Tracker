@@ -1,8 +1,6 @@
 const request = window.indexedDB.open("OfflineBudget", 1);
 
-request.onsuccess = (event) => {
-    console.log(request.result.name);
-};
+let db;
 
 request.onupgradeneeded = ({ target }) => {
     const db = target.result;
@@ -12,20 +10,22 @@ request.onupgradeneeded = ({ target }) => {
     });
 };
 
-request.onsuccess = () => {
-    saveData();
+request.onsuccess = (req) => {
+    db = req.target.result
+    if (navigator.onLine) {
+        saveData();
+    }
 };
 
 function saveRecord(data) {
-    const db = request.result;
     const transaction = db.transaction(["transactions"], "readwrite");
     const transactionStore = transaction.objectStore("transactions");
     // Adds data to our objectStore
     transactionStore.add(data);
 }
 
+// gets index db data & sends data to online server
 function saveData() {
-    const db = request.result;
     const transaction = db.transaction(["transactions"], "readwrite");
     const transactionStore = transaction.objectStore("transactions");
     const allData = transactionStore.getAll();
@@ -43,8 +43,7 @@ function saveData() {
                 .then((response) => {
                     return response.json();
                 })
-                .then((data) => {
-                    const db = request.result;
+                .then(() => {
                     const transaction = db.transaction(
                         ["transactions"],
                         "readwrite"
