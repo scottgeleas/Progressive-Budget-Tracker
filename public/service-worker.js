@@ -1,5 +1,5 @@
-const CACHE_NAME = "static-cache-v1";
-const DATA_CACHE_NAME = "data-cache-v1";
+const STATIC_CACHE = "static-cache-v1";
+const DATA_CACHE = "data-cache-v1";
 
 const FILES_TO_CACHE = [
     "/",
@@ -21,7 +21,7 @@ const FILES_TO_CACHE = [
 self.addEventListener("install", (event) => {
     event.waitUntil(
         caches
-            .open(CACHE_NAME)
+            .open(STATIC_CACHE)
             .then((cache) => cache.addAll(FILES_TO_CACHE))
             .then(self.skipWaiting())
     );
@@ -29,7 +29,7 @@ self.addEventListener("install", (event) => {
 
 // The activate handler takes care of cleaning up old caches.
 self.addEventListener("activate", (event) => {
-    const currentCaches = [CACHE_NAME, DATA_CACHE_NAME];
+    const currentCaches = [STATIC_CACHE, DATA_CACHE];
     event.waitUntil(
         caches
             .keys()
@@ -61,7 +61,7 @@ self.addEventListener("fetch", (event) => {
                     return cachedResponse;
                 }
 
-                return caches.open(DATA_CACHE_NAME).then((cache) => {
+                return caches.open(DATA_CACHE).then((cache) => {
                     return fetch(event.request).then((response) => {
                         // Put a copy of the response in the runtime cache.
                         if (response.status === 200) {
@@ -80,7 +80,7 @@ self.addEventListener("fetch", (event) => {
                     return cachedResponse;
                 }
 
-                return caches.open(CACHE_NAME).then((cache) => {
+                return caches.open(STATIC_CACHE).then((cache) => {
                     return fetch(event.request).then((response) => {
                         // Put a copy of the response in the runtime cache.
                         return response;
