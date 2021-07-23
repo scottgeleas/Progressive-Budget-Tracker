@@ -72,7 +72,6 @@ self.addEventListener("fetch", (event) => {
                 });
             })
         );
-        location.reload(true);
     } else {
         event.respondWith(
             caches.match(event.request).then((cachedResponse) => {
